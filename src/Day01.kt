@@ -18,7 +18,7 @@ fun main() {
         }
     }
 
-    val numbers = listOf("1", "2", "6", "4", "5", "9", "3", "7", "8")
+    val numbers = (1..9).map { it.toString() }
     val words = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
     val wordsAndNumbers = numbers.toMutableList() + words
 
