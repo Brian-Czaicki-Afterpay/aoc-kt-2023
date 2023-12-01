@@ -1,18 +1,5 @@
 fun main() {
     fun createIntFromStrings(string1: String, string2: String): Int { return (string1 + string2).toInt() }
-    val numberStrings = listOf("1", "2", "6", "4", "5", "9", "3", "7", "8")
-
-    fun part1(input: List<String>): Int {
-        return input.sumOf {
-            line -> createIntFromStrings(
-                line.findAnyOf(numberStrings)!!.second,
-                line.findLastAnyOf(numberStrings)!!.second
-            )
-        }
-    }
-
-    val wordsOfNumbers = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
-    val wordsAndNumbers = numberStrings.toMutableList() + wordsOfNumbers
 
     fun convertWordToDigit(wordNumberPair: Pair<Int, String>?): String {
         val wordNumber = wordNumberPair?.second ?: throw Exception("No word number found")
@@ -28,6 +15,19 @@ fun main() {
             "eight" -> "8"
             "nine" -> "9"
             else -> wordNumber
+        }
+    }
+
+    val numbers = listOf("1", "2", "6", "4", "5", "9", "3", "7", "8")
+    val words = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+    val wordsAndNumbers = numbers.toMutableList() + words
+
+    fun part1(input: List<String>): Int {
+        return input.sumOf {
+            line -> createIntFromStrings(
+                line.findAnyOf(numbers)!!.second,
+                line.findLastAnyOf(numbers)!!.second
+            )
         }
     }
 
