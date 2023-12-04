@@ -1,5 +1,4 @@
 fun main() {
-
     fun touchesSymbol (yCoord: Int, xCoordStart: Int, xCoordEnd: Int, symbols: List<Pair<Int, Int>>): Boolean {
         return symbols.any { (x, y) ->
             x in (xCoordStart- 1)..(xCoordEnd + 1)
@@ -23,7 +22,6 @@ fun main() {
         else {
             0
         }
-
     }
 
     fun getSymbols(input: List<String>): List<Pair<Int, Int>> {
@@ -64,10 +62,6 @@ fun main() {
     fun part2(input: List<String>): Int {
         val asterisks = getAsterisks(input)
         val numbers = getNumsWithIndx(input)
-
-        println(asterisks)
-        println(numbers)
-
         return asterisks.sumOf { calculateAsterisk(it.second, it.first, numbers) }
     }
 
