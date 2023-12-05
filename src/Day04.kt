@@ -17,19 +17,16 @@ fun main() {
     }
 
     fun getYourNumbers (line: String): List<Int> {
-        return line
-            .substringAfter("| ")
-            .grabIntsFromString()
+        return line.substringAfter("| ").grabIntsFromString()
+    }
+
+    fun getMatches (winningNums: List<Int>, yourNumbers: List<Int>): Int {
+        return winningNums.intersect(yourNumbers.toSet()).count()
     }
 
     fun part1(input: List<String>): Int {
         return input.sumOf { line ->
-            val winningNums = getWinningNumbers(line)
-            val yourNumbers = getYourNumbers(line)
-            val matches = winningNums
-                .intersect(yourNumbers.toSet())
-                .count()
-            
+            val matches = getMatches(getWinningNumbers(line), getYourNumbers(line))
             2.toDouble().pow(matches - 1).toInt()
         }
     }
@@ -38,11 +35,7 @@ fun main() {
         val totalCardsHashMap = List(input.size) { index -> index to 1 }.toMap(mutableMapOf())
 
         input.map { line ->
-            val winningNums = getWinningNumbers(line)
-            val yourNumbers = getYourNumbers(line)
-            val matches = winningNums
-                .intersect(yourNumbers.toSet())
-                .count()
+            val matches = getMatches(getWinningNumbers(line), getYourNumbers(line))
             val cardVal = line
                 .substringBefore(":")
                 .filter { it.isDigit() }
@@ -54,7 +47,6 @@ fun main() {
                 }
             }
         }
-
         return totalCardsHashMap.values.sum()
     }
 
